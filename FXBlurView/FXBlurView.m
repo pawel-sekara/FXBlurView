@@ -568,7 +568,7 @@
     CGRect bounds = [blurLayer convertRect:blurLayer.bounds toLayer:underlyingLayer];
 
     self.lastUpdate = [NSDate date];
-    CGFloat scale = 0.5;
+    CGFloat scale = [UIScreen mainScreen].scale;
     if (self.iterations)
     {
         CGFloat blockSize = 12.0/self.iterations;
