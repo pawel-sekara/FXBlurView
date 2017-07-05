@@ -418,7 +418,7 @@
 }
 
 - (void)setHiddenViews:(NSArray<UIView *> *)views {
-    self.hiddenViews = views;
+    _hiddenViews = views;
 }
 
 - (void)setBlurRadius:(CGFloat)blurRadius
