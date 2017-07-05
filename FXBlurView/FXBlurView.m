@@ -184,6 +184,7 @@
 @property (nonatomic, assign) BOOL blurEnabledSet;
 @property (nonatomic, strong) NSDate *lastUpdate;
 @property (nonatomic, assign) BOOL needsDrawViewHierarchy;
+@property (nonatomic, strong) NSArray * hiddenViews;
 
 - (UIImage *)snapshotOfUnderlyingView;
 - (BOOL)shouldUpdate;
@@ -307,6 +308,7 @@
 
 @implementation FXBlurView
 
+
 @synthesize underlyingView = _underlyingView;
 
 + (void)setBlurEnabled:(BOOL)blurEnabled
@@ -413,6 +415,10 @@
     _iterationsSet = YES;
     _iterations = iterations;
     [self setNeedsDisplay];
+}
+
+- (void)setHiddenViews:(NSArray<UIView *> *)views {
+    self.hiddenViews = views;
 }
 
 - (void)setBlurRadius:(CGFloat)blurRadius
@@ -663,6 +669,13 @@
                 layer.hidden = YES;
                 [layers addObject:layer];
             }
+        }
+    }
+
+    if (self.hiddenViews != nil) {
+        for (UIView * view in self.hiddenViews) {
+            view.layer.hidden = YES;
+            [layers addObject:view.layer];
         }
     }
 

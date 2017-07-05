@@ -74,6 +74,8 @@
 
 - (void)clearImage;
 
+- (void)setHiddenViews:(NSArray<UIView *> *)views;
+
 @end
 
 
